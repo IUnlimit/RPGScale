@@ -1,18 +1,26 @@
 package com.github.illtamer.rpg.scale
 
+import taboolib.common.LifeCycle
+import taboolib.common.platform.Awake
+import taboolib.common.platform.Plugin
+import taboolib.common.platform.function.getDataFolder
+import taboolib.common.platform.function.info
+import taboolib.expansion.setupPlayerDatabase
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.Configuration
+import java.io.File
 
-/**
- * 这是你插件对外开放的主类
- * 可以开放一些接口
- *
- * 默认情况下这个模块不包含 Bukkit 核心
- * 如果你的插件没有跨平台需求，可以在这个项目中引入 Bukkit 核心，以使用 Bukkit 的 API
- */
-object RPGScale {
+object RPGScale: Plugin() {
 
     @Config
     lateinit var conf: Configuration
         private set
+
+    @Awake(LifeCycle.ENABLE)
+    fun enable() {
+        // 初始化数据库, 随后可直接调用 player 中的拓展函数
+        setupPlayerDatabase(File(getDataFolder(), "data.sqlite"))
+        info("RPGScale init success!")
+    }
+
 }

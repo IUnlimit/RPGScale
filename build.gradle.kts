@@ -46,8 +46,6 @@ subprojects {
     // 全局依赖
     dependencies {
         compileOnly(kotlin("stdlib"))
-        compileOnly("io.lumine:MythicLib-dist:1.6.2-SNAPSHOT")
-        compileOnly("net.Indyuce:MMOCore-API:1.12.1-SNAPSHOT")
     }
 
     // 编译配置
